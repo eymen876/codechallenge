@@ -1,5 +1,7 @@
-package canovate.codechallenge.mobiledevice;
+package canovate.codechallenge.mobiledevice.Repository;
 
+import canovate.codechallenge.mobiledevice.Enums.os;
+import canovate.codechallenge.mobiledevice.Model.MobileDevice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,7 @@ public interface MobileDeviceRepository extends JpaRepository<MobileDevice , Lon
     List<MobileDevice> findByOs(os os);
 
     List<MobileDevice> findByOsVersion(String osVersion);
+    List<MobileDevice> findByid(Long id);
 
 
 }

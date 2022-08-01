@@ -1,12 +1,10 @@
-package canovate.codechallenge.mobiledevice;
-
-import java.util.Objects;
+package canovate.codechallenge.mobiledevice.ModelDTO;
 
 public class MobileDeviceDTO {
     private Long id;
     private String model;
     private String brand;
-    private os os;
+    private canovate.codechallenge.mobiledevice.Enums.os os;
     private String osVersion;
 
     public MobileDeviceDTO() {
@@ -36,11 +34,11 @@ public class MobileDeviceDTO {
         this.brand = brand;
     }
 
-    public canovate.codechallenge.mobiledevice.os getOs() {
+    public canovate.codechallenge.mobiledevice.Enums.os getOs() {
         return os;
     }
 
-    public void setOs(canovate.codechallenge.mobiledevice.os os) {
+    public void setOs(canovate.codechallenge.mobiledevice.Enums.os os) {
         this.os = os;
     }
 

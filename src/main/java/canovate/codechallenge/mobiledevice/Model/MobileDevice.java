@@ -1,6 +1,7 @@
-package canovate.codechallenge.mobiledevice;
+package canovate.codechallenge.mobiledevice.Model;
 
-import com.sun.istack.NotNull;
+import canovate.codechallenge.mobiledevice.Enums.os;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 
@@ -15,6 +16,7 @@ public class MobileDevice {
     private String model;
     @Column(nullable = false)
     private String brand;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private os os;

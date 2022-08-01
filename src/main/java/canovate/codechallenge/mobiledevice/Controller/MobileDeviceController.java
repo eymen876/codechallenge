@@ -1,10 +1,13 @@
-package canovate.codechallenge.mobiledevice;
+package canovate.codechallenge.mobiledevice.Controller;
 
+import canovate.codechallenge.mobiledevice.Service.MobileDeviceService;
+import canovate.codechallenge.mobiledevice.Model.MobileDevice;
+import canovate.codechallenge.mobiledevice.ModelDTO.MobileDeviceDTO;
+import canovate.codechallenge.mobiledevice.Enums.os;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path ="api/devices")
@@ -29,41 +32,18 @@ public class MobileDeviceController {
         return "Device with id " +mobileDeviceId+ " is deleted";
     }
 
-    @GetMapping("/model={model}")
-    public List <MobileDeviceDTO> findDeviceByModel(@PathVariable String model){
-        return mobileDeviceService.getMobileDeviceByModel(model);
-    }
-
-    @GetMapping("/device={id}")
-    public MobileDeviceDTO searchById(@PathVariable long id){
-        return mobileDeviceService.getMobileDeviceById(id);
-    }
-
-    @GetMapping("/brand={brand}")
-    public List <MobileDeviceDTO> searchByBrand(@PathVariable String brand){
-        return mobileDeviceService.getMobileDeviceByBrand(brand);
-    }
-
-    @GetMapping("/os={os}")
-    public List <MobileDeviceDTO> searchByOs(@PathVariable os os){
-        return mobileDeviceService.getMobileDeviceByOs(os);
-    }
-
-    @GetMapping("/osVersion={osVersion}")
-    public List <MobileDeviceDTO> searchByOsVersion(@PathVariable String osVersion){
-        return mobileDeviceService.getMobileDeviceByOsVersion(osVersion);
-    }
-
     @GetMapping("/search")
     public List<MobileDeviceDTO> search(@RequestParam(required = false) String brand ,
                                         @RequestParam(required = false) String model,
-                                        @RequestParam(required = false) String osVersion   ){
-        return mobileDeviceService.search(brand,model,osVersion);
+                                        @RequestParam(required = false) String osVersion,
+                                        @RequestParam(required = false) os os,
+                                        @RequestParam(required = false) Long id){
+        return mobileDeviceService.search(brand,model,osVersion,os,id);
     }
 
     @PostMapping("/insertData")
     public String addListOfData(@RequestBody List<MobileDevice> devices){
-        mobileDeviceService.addListOfData(devices);
+        mobileDeviceService.save(devices);
         String result="";
         for (MobileDevice d : devices){
             result += "id "+d.getId()+" inserted\n";

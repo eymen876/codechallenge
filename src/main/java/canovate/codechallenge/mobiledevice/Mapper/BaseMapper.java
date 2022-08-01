@@ -1,4 +1,4 @@
-package canovate.codechallenge.mobiledevice;
+package canovate.codechallenge.mobiledevice.Mapper;
 
 import java.util.List;
 

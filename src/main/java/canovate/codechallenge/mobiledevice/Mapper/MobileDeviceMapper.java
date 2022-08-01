@@ -1,13 +1,12 @@
-package canovate.codechallenge.mobiledevice;
+package canovate.codechallenge.mobiledevice.Mapper;
 
+import canovate.codechallenge.mobiledevice.Model.MobileDevice;
+import canovate.codechallenge.mobiledevice.ModelDTO.MobileDeviceDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring",uses = {})
-public interface MobileDeviceMapper extends BaseMapper<MobileDeviceDTO,MobileDevice>{
+public interface MobileDeviceMapper extends BaseMapper<MobileDeviceDTO, MobileDevice> {
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "model", target = "model")
