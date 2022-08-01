@@ -33,12 +33,12 @@ public class MobileDeviceController {
     }
 
     @GetMapping("/search")
-    public List<MobileDeviceDTO> search(@RequestParam(required = false) String brand ,
+    public List<MobileDeviceDTO> search(@RequestParam(required = false) Long id ,
                                         @RequestParam(required = false) String model,
-                                        @RequestParam(required = false) String osVersion,
+                                        @RequestParam(required = false) String brand,
                                         @RequestParam(required = false) os os,
-                                        @RequestParam(required = false) Long id){
-        return mobileDeviceService.search(brand,model,osVersion,os,id);
+                                        @RequestParam(required = false) String osVersion){
+        return mobileDeviceService.search(id,model,brand,os,osVersion);
     }
 
     @PostMapping("/insertData")

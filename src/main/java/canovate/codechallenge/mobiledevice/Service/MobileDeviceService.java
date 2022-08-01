@@ -67,25 +67,9 @@ public class MobileDeviceService implements ServiceInterface{
             mobileDeviceRepository.deleteById(mobileDeviceId);
     }
 
-    public List<MobileDeviceDTO> search(String brand ,String model, String osVersion, os os,Long id){
-
-        List<MobileDeviceDTO> devices = mobileDeviceMapper.toDto(mobileDeviceRepository.findAll());
-        if(brand != null){
-            devices.retainAll(mobileDeviceMapper.toDto(mobileDeviceRepository.findByBrand(brand)));
-        }
-        if(model != null){
-            devices.retainAll(mobileDeviceMapper.toDto(mobileDeviceRepository.findByModel(model)));
-        }
-        if(osVersion != null){
-            devices.retainAll(mobileDeviceMapper.toDto(mobileDeviceRepository.findByOsVersion(osVersion)));
-        }
-        if(os !=null){
-            devices.retainAll(mobileDeviceMapper.toDto(mobileDeviceRepository.findByOs(os)));
-        }
-        if(id !=null){
-            devices.retainAll(mobileDeviceMapper.toDto(mobileDeviceRepository.findByid(id)));
-        }
-        return devices;
+    public List<MobileDeviceDTO> search(Long id,String model ,String brand, os os,String osVersion){
+        List <MobileDevice> devices = mobileDeviceRepository.search(id,model,brand,os,osVersion);
+        return mobileDeviceMapper.toDto(devices);
     }
 
     public void save(List<MobileDevice> devices) {
