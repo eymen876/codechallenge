@@ -12,14 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface MobileDeviceRepository extends JpaRepository<MobileDevice , Long> {
-
-    Optional<MobileDevice>  findMobileDeviceByModel(String model);
-    List <MobileDevice> findByModel(String model);
-    List <MobileDevice> findByBrand(String brand);
-    List<MobileDevice> findByOs(os os);
-    List<MobileDevice> findByOsVersion(String osVersion);
-    List<MobileDevice> findByid(Long id);
-
     @Query("SELECT d FROM MobileDevice d WHERE (:id is null or d.id = :id) AND (:model is null or d.model = :model) AND" +
             " (:brand is null or d.brand = :brand) AND (:os is null or d.os = :os) AND (:osVersion is null or d.osVersion = :osVersion)")
     List <MobileDevice> search(@Param("id")Long id ,@Param("model")String model,@Param("brand")String brand,

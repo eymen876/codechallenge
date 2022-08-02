@@ -9,6 +9,7 @@ import java.util.List;
 public interface ServiceInterface {
     public List<MobileDeviceDTO> getDevices();
     public void addNewDevice(MobileDevice mobileDevice);
-    public void deleteDevice(Long mobileDeviceId);
+    public void deleteDevice(Long id);
     List<MobileDeviceDTO> search(Long id,String model, String brand, os os, String osVersion);
+    public void save(List<MobileDevice> devices);
 }

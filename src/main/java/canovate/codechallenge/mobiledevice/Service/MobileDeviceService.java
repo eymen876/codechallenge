@@ -21,26 +21,10 @@ public class MobileDeviceService implements ServiceInterface{
     private MobileDeviceMapper mobileDeviceMapper;
 
     public List<MobileDeviceDTO> getDevices() {
-        List<MobileDeviceDTO> devices = new ArrayList<>();
-        List<MobileDevice> deviceList = mobileDeviceRepository.findAll();
-        for (MobileDevice d : deviceList) {
-            devices.add(mobileDeviceMapper.toDto(d));
-        }
-        return devices;
-
-        //second implementation
-
-//        List <MobileDeviceDTO> devices = new ArrayList<>();
-//        devices = mobileDeviceMapper.toDto(mobileDeviceRepository.findAll());
-//        return devices;
+        return mobileDeviceMapper.toDto(mobileDeviceRepository.findAll());
     }
 
     public void addNewDevice(MobileDevice mobileDevice) {
-        // second implementation without validating  brand,model&osversion
-//        Optional<MobileDevice> mobileDeviceOptional =  mobileDeviceRepository.findMobileDeviceByModel(mobileDevice.getModel());
-//        if(mobileDeviceOptional.isPresent()){
-//            throw new IllegalStateException("model already exists");
-//        }
         MobileDeviceDTO device = mobileDeviceMapper.toDto(mobileDevice);
         List<MobileDeviceDTO> devices = new ArrayList<>();
         devices = mobileDeviceMapper.toDto(mobileDeviceRepository.findAll());
@@ -58,18 +42,16 @@ public class MobileDeviceService implements ServiceInterface{
             System.out.println("Device Already Exists");
     }
 
-
-        public void deleteDevice(Long mobileDeviceId) {
-        if (!mobileDeviceRepository.existsById(mobileDeviceId)) {
-            System.out.println("device with id " + mobileDeviceId + " doesn't exists");
+    public void deleteDevice(Long id) {
+        if (!mobileDeviceRepository.existsById(id)) {
+            System.out.println("device with id " + id + " doesn't exists");
         }
         else
-            mobileDeviceRepository.deleteById(mobileDeviceId);
+            mobileDeviceRepository.deleteById(id);
     }
 
     public List<MobileDeviceDTO> search(Long id,String model ,String brand, os os,String osVersion){
-        List <MobileDevice> devices = mobileDeviceRepository.search(id,model,brand,os,osVersion);
-        return mobileDeviceMapper.toDto(devices);
+        return mobileDeviceMapper.toDto(mobileDeviceRepository.search(id,model,brand,os,osVersion));
     }
 
     public void save(List<MobileDevice> devices) {
