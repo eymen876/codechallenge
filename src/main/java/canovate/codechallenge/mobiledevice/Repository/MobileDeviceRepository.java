@@ -1,14 +1,13 @@
 package canovate.codechallenge.mobiledevice.Repository;
 
 import canovate.codechallenge.mobiledevice.Enums.os;
-import canovate.codechallenge.mobiledevice.Model.MobileDevice;
+import canovate.codechallenge.mobiledevice.Entity.MobileDevice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface MobileDeviceRepository extends JpaRepository<MobileDevice , Long> {

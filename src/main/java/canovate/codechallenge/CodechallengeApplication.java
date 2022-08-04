@@ -1,8 +1,7 @@
 package canovate.codechallenge;
 
-import canovate.codechallenge.mobiledevice.Model.MobileDevice;
+import canovate.codechallenge.mobiledevice.Entity.MobileDevice;
 import canovate.codechallenge.mobiledevice.Repository.MobileDeviceRepository;
-import canovate.codechallenge.mobiledevice.Service.MobileDeviceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.boot.CommandLineRunner;

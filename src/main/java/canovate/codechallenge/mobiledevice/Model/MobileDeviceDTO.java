@@ -1,4 +1,4 @@
-package canovate.codechallenge.mobiledevice.ModelDTO;
+package canovate.codechallenge.mobiledevice.Model;
 
 public class MobileDeviceDTO {
     private Long id;

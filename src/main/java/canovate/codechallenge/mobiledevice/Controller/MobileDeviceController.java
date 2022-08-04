@@ -1,8 +1,7 @@
 package canovate.codechallenge.mobiledevice.Controller;
 
 import canovate.codechallenge.mobiledevice.Service.MobileDeviceService;
-import canovate.codechallenge.mobiledevice.Model.MobileDevice;
-import canovate.codechallenge.mobiledevice.ModelDTO.MobileDeviceDTO;
+import canovate.codechallenge.mobiledevice.Model.MobileDeviceDTO;
 import canovate.codechallenge.mobiledevice.Enums.os;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +20,9 @@ public class MobileDeviceController {
     }
 
     @PostMapping
-    public long registerNewDevice(@RequestBody MobileDevice mobileDevice){
-        mobileDeviceService.addNewDevice(mobileDevice);
-        return mobileDevice.getId();
+    public long registerNewDevice(@RequestBody MobileDeviceDTO mobileDeviceDTO){
+        mobileDeviceService.addNewDevice(mobileDeviceDTO);
+        return mobileDeviceDTO.getId();
     }
 
     @DeleteMapping(path = "{mobileDeviceId}")
@@ -42,22 +41,11 @@ public class MobileDeviceController {
     }
 
     @PostMapping("/insertData")
-    public String addListOfData(@RequestBody List<MobileDevice> devices){
-        mobileDeviceService.save(devices);
-        String result="";
-        for (MobileDevice d : devices){
-            result += "id "+d.getId()+" inserted\n";
-        }
-        return result;
+    public String addListOfData(@RequestBody List<MobileDeviceDTO> devices){
+        return mobileDeviceService.save(devices);
     }
 
 
-
-    //Havent yet implemented.
-//    @PutMapping("/update/{id}")
-//    public MobileDeviceDTO replaceDevice(@RequestBody MobileDevice mobileDevice ,@PathVariable Long id){
-//        return null;
-//    }
 
 
 }

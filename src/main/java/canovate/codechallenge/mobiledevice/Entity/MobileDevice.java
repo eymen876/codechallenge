@@ -1,7 +1,6 @@
-package canovate.codechallenge.mobiledevice.Model;
+package canovate.codechallenge.mobiledevice.Entity;
 
 import canovate.codechallenge.mobiledevice.Enums.os;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 
@@ -10,7 +9,15 @@ import javax.persistence.*;
 public class MobileDevice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name= "device_sequence",
+            sequenceName = "device_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "device_sequence"
+    )
     private Long id;
     @Column(nullable = false)
     private String model;

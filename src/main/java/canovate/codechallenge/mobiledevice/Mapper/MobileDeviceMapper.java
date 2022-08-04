@@ -1,7 +1,7 @@
 package canovate.codechallenge.mobiledevice.Mapper;
 
-import canovate.codechallenge.mobiledevice.Model.MobileDevice;
-import canovate.codechallenge.mobiledevice.ModelDTO.MobileDeviceDTO;
+import canovate.codechallenge.mobiledevice.Entity.MobileDevice;
+import canovate.codechallenge.mobiledevice.Model.MobileDeviceDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

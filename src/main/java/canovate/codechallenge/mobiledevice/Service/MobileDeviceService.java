@@ -3,14 +3,14 @@ package canovate.codechallenge.mobiledevice.Service;
 
 import canovate.codechallenge.mobiledevice.Enums.os;
 import canovate.codechallenge.mobiledevice.Mapper.MobileDeviceMapper;
+import canovate.codechallenge.mobiledevice.Entity.MobileDevice;
+import canovate.codechallenge.mobiledevice.Model.MobileDeviceDTO;
 import canovate.codechallenge.mobiledevice.Repository.MobileDeviceRepository;
-import canovate.codechallenge.mobiledevice.Model.MobileDevice;
-import canovate.codechallenge.mobiledevice.ModelDTO.MobileDeviceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MobileDeviceService implements ServiceInterface{
@@ -24,19 +24,18 @@ public class MobileDeviceService implements ServiceInterface{
         return mobileDeviceMapper.toDto(mobileDeviceRepository.findAll());
     }
 
-    public void addNewDevice(MobileDevice mobileDevice) {
-        MobileDeviceDTO device = mobileDeviceMapper.toDto(mobileDevice);
+    public void addNewDevice(MobileDeviceDTO mobileDeviceDTO) {
         List<MobileDeviceDTO> devices = new ArrayList<>();
         devices = mobileDeviceMapper.toDto(mobileDeviceRepository.findAll());
         boolean exists = false;
 
         for (MobileDeviceDTO d : devices) {
-            if (device.getBrand().equals(d.getBrand()) && device.getModel().equals(d.getModel()) && device.getOsVersion().equals(d.getOsVersion())) {
+            if (mobileDeviceDTO.getBrand().equals(d.getBrand()) && mobileDeviceDTO.getModel().equals(d.getModel()) && mobileDeviceDTO.getOsVersion().equals(d.getOsVersion())) {
                 exists=true;
             }
         }
         if(exists==false) {
-            mobileDeviceRepository.save(mobileDevice);
+            mobileDeviceRepository.save( mobileDeviceMapper.toEntity(mobileDeviceDTO));
         }
         else
             System.out.println("Device Already Exists");
@@ -54,8 +53,13 @@ public class MobileDeviceService implements ServiceInterface{
         return mobileDeviceMapper.toDto(mobileDeviceRepository.search(id,model,brand,os,osVersion));
     }
 
-    public void save(List<MobileDevice> devices) {
-        mobileDeviceRepository.saveAll(devices);
+    public String save(List<MobileDeviceDTO> devices) {
+        mobileDeviceRepository.saveAll(mobileDeviceMapper.toEntity(devices));
+        String result="";
+        for (MobileDeviceDTO d : devices){
+            result += "id "+d.getId()+" inserted\n";
+        }
+        return result;
     }
 }
 
