@@ -12,4 +12,5 @@ public interface ServiceInterface {
     public void deleteDevice(Long id);
     List<MobileDeviceDTO> search(Long id,String model, String brand, os os, String osVersion);
     public String save(List<MobileDeviceDTO> devices);
+    public MobileDeviceDTO updateDevice(MobileDeviceDTO mobileDeviceDTO);
 }

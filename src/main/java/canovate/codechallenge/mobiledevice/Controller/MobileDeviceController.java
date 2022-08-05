@@ -47,6 +47,11 @@ public class MobileDeviceController {
 
 
 
+    //updates using object
+    @PutMapping("/update")
+    public MobileDeviceDTO updateDevice(@RequestBody MobileDeviceDTO mobileDeviceDTO ){
+        return mobileDeviceService.updateDevice(mobileDeviceDTO);
+    }
 
 }
 

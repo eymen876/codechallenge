@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MobileDeviceService implements ServiceInterface{
@@ -60,6 +61,25 @@ public class MobileDeviceService implements ServiceInterface{
             result += "id "+d.getId()+" inserted\n";
         }
         return result;
+    }
+
+    public MobileDeviceDTO updateDevice(MobileDeviceDTO mobileDeviceDTO){
+        Optional<MobileDevice> deviceOptional = mobileDeviceRepository.findById(mobileDeviceDTO.getId());
+        if(deviceOptional.isPresent()){
+            MobileDevice mobileDevice=deviceOptional.get();
+
+            mobileDevice.setBrand(mobileDeviceDTO.getBrand());
+            mobileDevice.setModel(mobileDeviceDTO.getModel());
+            mobileDevice.setOs(mobileDeviceDTO.getOs());
+            mobileDevice.setOsVersion(mobileDeviceDTO.getOsVersion());
+
+            return mobileDeviceMapper.toDto(mobileDevice);
+        }
+        else {
+            System.out.println("Device with id "+mobileDeviceDTO.getId()+ " not found");
+            return null;
+        }
+
     }
 }
 

@@ -16,7 +16,4 @@ public interface MobileDeviceMapper extends BaseMapper<MobileDeviceDTO, MobileDe
     MobileDeviceDTO toDto (MobileDevice mobileDevice);
 
 
-//    List<MobileDeviceDTO> modelsToDTOs(List<MobileDevice> mobileDevices);
-//
-//    MobileDevice DTOToModel (MobileDeviceDTO mobiledeviceDTO);
 }
